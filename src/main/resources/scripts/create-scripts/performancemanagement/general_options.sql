@@ -1,0 +1,5 @@
+CREATE TABLE general_options (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    option_name VARCHAR(255) NOT NULL,
+    enabled BOOLEAN NOT NULL DEFAULT FALSE
+);

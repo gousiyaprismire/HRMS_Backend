@@ -1,0 +1,17 @@
+CREATE TABLE salary_structure (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    emp_id INT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    basic_pay DECIMAL(10,2) NOT NULL,
+    hra DECIMAL(10,2) NOT NULL,
+    pf DECIMAL(10,2) NOT NULL,
+    deductions DECIMAL(10,2) NOT NULL,
+    travel_allowance DECIMAL(10,2) NOT NULL,
+    food_allowance DECIMAL(10,2) NOT NULL,
+    pf_employee DECIMAL(10,2) NOT NULL,
+    month VARCHAR(20) NOT NULL,
+    year INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (emp_id) REFERENCES employees(emp_id) ON DELETE CASCADE
+);

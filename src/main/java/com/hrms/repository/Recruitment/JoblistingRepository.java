@@ -1,4 +1,11 @@
 package com.hrms.repository.Recruitment;
 
-public class JoblistingRepository {
+
+
+import com.hrms.model.Recruitment.Joblisting;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface JoblistingRepository extends JpaRepository<Joblisting, Long> {
 }

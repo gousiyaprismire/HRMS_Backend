@@ -1,17 +1,12 @@
 package com.hrms.model.Recruitment;
 
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.time.LocalDate;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Table (name= "Employee")
 public class Joblisting {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,6 +17,61 @@ public class Joblisting {
     private String description;
     private LocalDate postedDate;
     private LocalDate applicationDeadline;
+
+
+    public Joblisting() {
+    }
+
+
+    public Joblisting(Long id, String title, String department, String location, String jobType, String description, LocalDate postedDate, LocalDate applicationDeadline) {
+        this.id = id;
+        this.title = title;
+        this.department = department;
+        this.location = location;
+        this.jobType = jobType;
+        this.description = description;
+        this.postedDate = postedDate;
+        this.applicationDeadline = applicationDeadline;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getJobType() {
+        return jobType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public LocalDate getPostedDate() {
+        return postedDate;
+    }
+
+    public LocalDate getApplicationDeadline() {
+        return applicationDeadline;
+    }
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -49,11 +99,4 @@ public class Joblisting {
     public void setApplicationDeadline(LocalDate applicationDeadline) {
         this.applicationDeadline = applicationDeadline;
     }
-
-
-    public String getTitle() {
-    }
 }
-
-
-

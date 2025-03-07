@@ -1,4 +1,11 @@
 package com.hrms.repository.Recruitment;
 
-public class InterviewRepository {
+
+
+
+import com.hrms.model.Recruitment.Interview;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface InterviewRepository extends JpaRepository<Interview, Long> {
 }
+

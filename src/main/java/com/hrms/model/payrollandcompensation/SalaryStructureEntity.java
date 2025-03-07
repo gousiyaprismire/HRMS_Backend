@@ -21,7 +21,7 @@ public class SalaryStructureEntity {
     private String month;
     private String year;
 
-    // Constructors
+  
     public SalaryStructureEntity() {}
 
     public SalaryStructureEntity(String empId, String name, double basicPay, double hra, double pf, double deductions, 
@@ -39,7 +39,7 @@ public class SalaryStructureEntity {
         this.year = year;
     }
 
-    // Getters and Setters
+  
     public String getEmpId() {
         return empId;
     }

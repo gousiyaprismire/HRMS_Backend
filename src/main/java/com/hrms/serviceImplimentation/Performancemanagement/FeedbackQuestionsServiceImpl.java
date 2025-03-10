@@ -4,6 +4,8 @@ import com.hrms.model.PerformanceManagement.FeedbackQuestions;
 import com.hrms.repository.PerformanceManagement.FeedbackQuestionsRepository;
 import com.hrms.service.PerformanceManagement.FeedbackQuestionsService;
 
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +29,9 @@ public class FeedbackQuestionsServiceImpl implements FeedbackQuestionsService {
     }
 
     @Override
+    @Transactional
     public FeedbackQuestions addFeedbackQuestion(FeedbackQuestions question) {
+    	System.out.println("Inside addFeedbackQuestionService");
         return feedbackQuestionsRepository.save(question);
     }
 

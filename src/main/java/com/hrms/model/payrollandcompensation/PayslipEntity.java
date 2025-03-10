@@ -1,6 +1,8 @@
 package com.hrms.model.payrollandcompensation;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -9,6 +11,8 @@ import jakarta.persistence.Table;
 public class PayslipEntity {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
     private String empId;
     private String name;
     private String pan;
@@ -18,7 +22,7 @@ public class PayslipEntity {
     private String doj;
     private String gender;
     private double totalEarnings;
-    private Long id;
+    
 
     public PayslipEntity() {}
 

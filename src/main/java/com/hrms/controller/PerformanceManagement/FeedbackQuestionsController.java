@@ -38,15 +38,17 @@ public class FeedbackQuestionsController {
 
 	    @PostMapping
 	    public ResponseEntity<FeedbackQuestions> addFeedbackQuestion(@RequestBody FeedbackQuestions question) {
+	    	System.out.println("Inside addFeedbackQuestion");
 	        FeedbackQuestions savedQuestion = feedbackQuestionsService.addFeedbackQuestion(question);
+	        
 	        return ResponseEntity.status(HttpStatus.CREATED).body(savedQuestion);
 	    }
 
-	    @PutMapping("/{id}")
+	    @PutMapping
 	    public ResponseEntity<FeedbackQuestions> updateFeedbackQuestion(
-	            @PathVariable Long id, @RequestBody FeedbackQuestions updatedQuestion) {
+	             @RequestBody FeedbackQuestions updatedQuestion) {
 	        try {
-	            FeedbackQuestions updated = feedbackQuestionsService.updateFeedbackQuestion(id, updatedQuestion);
+	            FeedbackQuestions updated = feedbackQuestionsService.updateFeedbackQuestion( updatedQuestion.getId(),updatedQuestion);
 	            return ResponseEntity.ok(updated);
 	        } catch (RuntimeException e) {
 	            return ResponseEntity.notFound().build();

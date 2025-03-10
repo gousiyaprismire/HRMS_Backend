@@ -11,7 +11,7 @@ public class EmployeeAttendance
     private Long id;
 
     @Column(nullable = false)
-    private String Name;
+    private String name;
 
     @Column(nullable = false)
     private String clockIn;
@@ -22,9 +22,9 @@ public class EmployeeAttendance
     public EmployeeAttendance() {
     }
 
-    public EmployeeAttendance(Long id, String Name, String clockIn, String clockOut) {
+    public EmployeeAttendance(Long id, String name, String clockIn, String clockOut) {
         this.id = id;
-        this.Name = Name;
+        this.name = name;
         this.clockIn = clockIn;
         this.clockOut = clockOut;
         
@@ -39,11 +39,11 @@ public class EmployeeAttendance
     }
 
     public String getEmployeeName() {
-        return Name;
+        return name;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getClockIn() {

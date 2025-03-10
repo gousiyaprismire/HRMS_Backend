@@ -4,6 +4,7 @@ import com.hrms.BenefitsCompliance.dto.BenefitsEnrollmentDTO;
 
 import java.util.List;
 
+
 public interface BenefitsEnrollmentService {
     BenefitsEnrollmentDTO enrollBenefits(BenefitsEnrollmentDTO dto);
     List<BenefitsEnrollmentDTO> getEnrollmentsByEmployeeId(Long employeeId);

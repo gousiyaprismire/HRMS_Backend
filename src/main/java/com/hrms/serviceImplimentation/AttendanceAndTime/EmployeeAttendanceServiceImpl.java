@@ -38,6 +38,6 @@ public class EmployeeAttendanceServiceImpl implements EmployeeAttendanceService 
 
     @Override
     public List<EmployeeAttendance> searchRecords(String query) {
-        return repository.findByNameContainingIgnoreCase(query);
+        return repository.findByNameIgnoreCase(query);
     }
 }

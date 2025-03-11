@@ -38,7 +38,6 @@ public class FeedbackQuestionsController {
 
 	    @PostMapping
 	    public ResponseEntity<FeedbackQuestions> addFeedbackQuestion(@RequestBody FeedbackQuestions question) {
-	    	System.out.println("Inside addFeedbackQuestion");
 	        FeedbackQuestions savedQuestion = feedbackQuestionsService.addFeedbackQuestion(question);
 	        
 	        return ResponseEntity.status(HttpStatus.CREATED).body(savedQuestion);

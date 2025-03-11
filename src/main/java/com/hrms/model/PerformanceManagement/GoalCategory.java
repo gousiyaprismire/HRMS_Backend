@@ -9,14 +9,21 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="goal-category")
+@NoArgsConstructor
+@Table(name="goal_categories")
 public class GoalCategory {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
+	
+	@Version  
+    private Integer version;
+
 	
 	@Column(nullable=false, length=255)
 	private String name;
@@ -24,7 +31,7 @@ public class GoalCategory {
 	@Column(columnDefinition="Text")
 	private String description;
 	
-	@Column(name="created-at", updatable=false, nullable=false)
+	@Column(name="createdAt", updatable=false, nullable=false)
 	private LocalDateTime createdAt;
 	
 	@PrePersist
@@ -32,7 +39,7 @@ public class GoalCategory {
         this.createdAt = LocalDateTime.now();
     }
 
-	public GoalCategory(long id, String name, String description, LocalDateTime createdAt) {
+	public GoalCategory(Long id, String name, String description, LocalDateTime createdAt) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -44,7 +51,7 @@ public class GoalCategory {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

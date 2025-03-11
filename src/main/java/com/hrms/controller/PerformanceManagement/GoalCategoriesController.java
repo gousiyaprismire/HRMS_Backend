@@ -17,7 +17,7 @@ import com.hrms.model.PerformanceManagement.GoalCategory;
 import com.hrms.service.PerformanceManagement.GoalCategoryService;
 
 @RestController
-@RequestMapping("/api/goal-categories")
+@RequestMapping("/api/goal_categories")
 public class GoalCategoriesController {
 	
 	@Autowired
@@ -34,7 +34,7 @@ public class GoalCategoriesController {
 	}
 	
 	@PostMapping
-	public GoalCategory createCategory(GoalCategory category) {
+	public GoalCategory createCategory(@RequestBody GoalCategory category) {
 		return goalCategoryService.createCategory(category);
 	}
 	

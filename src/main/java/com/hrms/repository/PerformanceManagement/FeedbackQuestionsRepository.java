@@ -8,3 +8,4 @@ import com.hrms.model.PerformanceManagement.FeedbackQuestions;
 public interface FeedbackQuestionsRepository extends JpaRepository<FeedbackQuestions, Long> {
 
 }
+

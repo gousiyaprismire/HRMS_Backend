@@ -48,3 +48,4 @@ public class GoalCategoriesController {
 		goalCategoryService.deleteCategory(id);
 	}
 }
+

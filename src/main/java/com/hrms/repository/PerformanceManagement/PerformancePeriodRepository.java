@@ -9,3 +9,4 @@ import com.hrms.model.PerformanceManagement.PerformancePeriod;
 public interface PerformancePeriodRepository extends JpaRepository<PerformancePeriod, Long>{
 
 }
+

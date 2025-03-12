@@ -46,6 +46,5 @@ public class GoalCategoryServiceImpl implements GoalCategoryService {
 	@Override
 	public void deleteCategory(Long id) {
 		goalCategoryRepository.deleteById(id);
-		
 	}
 }

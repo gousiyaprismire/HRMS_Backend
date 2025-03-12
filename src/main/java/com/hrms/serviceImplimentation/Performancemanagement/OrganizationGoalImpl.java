@@ -41,5 +41,4 @@ public class OrganizationGoalImpl implements OrganizationGoalService{
 		organizationGoalRepository.deleteById(id);
 		
 	}
-
 }

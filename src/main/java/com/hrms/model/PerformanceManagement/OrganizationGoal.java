@@ -85,6 +85,4 @@ public class OrganizationGoal {
 				+ ", target=" + target + ", rollupMethod=" + rollupMethod + "]";
 	}
 	
-	
-
 }

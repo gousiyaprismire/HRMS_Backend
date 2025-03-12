@@ -18,7 +18,7 @@ import com.hrms.service.PerformanceManagement.OrganizationGoalService;
 
 
 @RestController
-@RequestMapping("/api/organization-goals")
+@RequestMapping("/api/organization_goals")
 public class OrganizationGoalController {
 
 	@Autowired
@@ -36,7 +36,7 @@ public class OrganizationGoalController {
 	}
 	
 	@PostMapping
-	public OrganizationGoal createOrganizationGoal(OrganizationGoal goal) {
+	public OrganizationGoal createOrganizationGoal(@RequestBody OrganizationGoal goal) {
 		return organizationGoalService.createOrganizationGoal(goal);
 	}
 	
@@ -46,7 +46,7 @@ public class OrganizationGoalController {
 	}
 	
 	@DeleteMapping("/{id}")
-	void deleteOrganizationGoal(Long id) {
+	void deleteOrganizationGoal(@PathVariable Long id) {
 		organizationGoalService.deleteOrganizationGoal(id);
 	}
 	

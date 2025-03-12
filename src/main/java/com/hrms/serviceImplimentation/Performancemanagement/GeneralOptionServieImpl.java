@@ -11,37 +11,34 @@ import com.hrms.service.PerformanceManagement.GeneralOptionService;
 public class GeneralOptionServieImpl implements GeneralOptionService {
 	
 	@Autowired
-	private GeneralOptionRepository generalOptionRepository;
+    private GeneralOptionRepository generalOptionRepository;
 
-	@Override
-	public GeneralOption saveGeneralOption(GeneralOption generalOption) {
-		return generalOptionRepository.save(generalOption);
-	}
+    @Override
+    public GeneralOption createGeneralOption(GeneralOption generalOption) {
+        return generalOptionRepository.save(generalOption);
+    }
 
-	@Override
-	public Optional<GeneralOption> getGeneralOptionById(Long id) {
-		return generalOptionRepository.findById(id);
-	}
+    @Override
+    public List<GeneralOption> getAllGeneralOptions() {
+        return generalOptionRepository.findAll();
+    }
 
-	@Override
-	public List<GeneralOption> getAllGeneralOptions() {
-		return generalOptionRepository.findAll();
-	}
+    @Override
+    public Optional<GeneralOption> getGeneralOptionById(Long id) {
+        return generalOptionRepository.findById(id);
+    }
 
-	@Override
-	public void deleteGeneralOption(Long id) {
-		generalOptionRepository.deleteById(id);
-		
-	}
+    @Override
+    public GeneralOption updateGeneralOption(Long id, GeneralOption updatedOption) {
+        return generalOptionRepository.findById(id).map(existingOption -> {
+            existingOption.setOptionName(updatedOption.getOptionName());
+            existingOption.setEnabled(updatedOption.isEnabled());
+            return generalOptionRepository.save(existingOption);
+        }).orElseThrow(() -> new RuntimeException("GeneralOption not found with id " + id));
+    }
 
-	@Override
-	public GeneralOption updateGeneralOption(Long id, GeneralOption generalOption) {
-		if(generalOptionRepository.existsById(id) ) {
-			generalOption.setId(id);
-			return generalOptionRepository.save(generalOption);
-		}
-		else {
-			return null;
-		}	
-	}
+    @Override
+    public void deleteGeneralOption(Long id) {
+        generalOptionRepository.deleteById(id);
+    }
 }

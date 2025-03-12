@@ -84,7 +84,5 @@ public class GoalCategory {
 		return "GoalCategory [id=" + id + ", name=" + name + ", description=" + description + ", createdAt=" + createdAt
 				+ "]";
 	}
-	
-	
 
 }

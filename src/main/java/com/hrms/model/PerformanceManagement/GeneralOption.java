@@ -59,6 +59,4 @@ public class GeneralOption {
 		return "GeneralOption [id=" + id + ", optionName=" + optionName + ", enabled=" + enabled + "]";
 	}
 	
-	
-	
 }

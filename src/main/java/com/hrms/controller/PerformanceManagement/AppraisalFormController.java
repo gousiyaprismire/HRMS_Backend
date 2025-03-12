@@ -46,6 +46,5 @@ public class AppraisalFormController {
 	@DeleteMapping("{/id}")
 	public void deleteAppraisalForm(@PathVariable Long id) {
 		appraisalFormService.deleteAppraisalForm(id);
-	}
-	
+	}	
 }

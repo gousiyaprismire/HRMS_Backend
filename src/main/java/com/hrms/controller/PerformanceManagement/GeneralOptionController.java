@@ -51,4 +51,4 @@ public class GeneralOptionController {
 	        generalOptionService.deleteGeneralOption(id);
 	        return ResponseEntity.noContent().build();
 	    }
-}
+	}

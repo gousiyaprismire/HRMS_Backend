@@ -93,6 +93,4 @@ public class AppraisalForm {
 				+ ", status=" + status + ", lastAction=" + lastAction + "]";
 	}
     
-    
-
 }

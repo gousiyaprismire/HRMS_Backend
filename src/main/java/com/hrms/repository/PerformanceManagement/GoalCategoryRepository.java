@@ -9,3 +9,4 @@ import com.hrms.model.PerformanceManagement.GoalCategory;
 public interface GoalCategoryRepository extends JpaRepository<GoalCategory, Long>{
 
 }
+

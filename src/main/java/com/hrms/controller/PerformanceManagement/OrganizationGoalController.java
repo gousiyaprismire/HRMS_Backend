@@ -49,5 +49,4 @@ public class OrganizationGoalController {
 	void deleteOrganizationGoal(@PathVariable Long id) {
 		organizationGoalService.deleteOrganizationGoal(id);
 	}
-	
 }

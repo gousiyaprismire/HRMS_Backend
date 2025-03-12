@@ -9,3 +9,4 @@ import com.hrms.model.PerformanceManagement.AppraisalForm;
 public interface AppraisalFormRepository extends JpaRepository<AppraisalForm, Long>{
 
 }
+

@@ -41,4 +41,5 @@ public class GeneralOptionServieImpl implements GeneralOptionService {
     public void deleteGeneralOption(Long id) {
         generalOptionRepository.deleteById(id);
     }
+    
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/salary-structure")
 @CrossOrigin(origins = "*")
-public class SalaryStructure {
+public class SalaryStructureController {
  
     @Autowired
     private SalaryStructureService salaryStructureService;
@@ -36,4 +36,12 @@ public class SalaryStructure {
         salaryStructureService.deleteSalaryStructureById(id);
         return ResponseEntity.ok("Deleted successfully");
     }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<SalaryStructureEntity> updateSalaryStructure(
+            @PathVariable String id,
+            @RequestBody SalaryStructureEntity updatedSalaryStructure) {
+        updatedSalaryStructure.setEmpId(id);
+        return ResponseEntity.ok(salaryStructureService.saveSalaryStructure(updatedSalaryStructure));
+    }
+
 }

@@ -16,7 +16,7 @@ public class TaxController {
     @Autowired
     private TaxService taxService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<TaxEntity> getAllTaxReports() {
         return taxService.getAllTaxReports();
     }

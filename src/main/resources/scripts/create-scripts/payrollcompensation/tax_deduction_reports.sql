@@ -1,4 +1,4 @@
-CREATE TABLE tax_deduction_reports (
+CREATE TABLE tax_reports (
     id INT PRIMARY KEY AUTO_INCREMENT,
     emp_id VARCHAR(50) NOT NULL,
     name VARCHAR(100) NOT NULL,

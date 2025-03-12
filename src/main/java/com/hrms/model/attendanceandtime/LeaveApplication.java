@@ -3,28 +3,45 @@ package com.hrms.model.attendanceandtime;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "leave_application")
+@Table(name = "leave_applications")
 public class LeaveApplication {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
+    @Column(name = "emp_id", nullable = false)
+    private String empId; 
+    
     private String name;
     private String leaveType;
     private String startDate;
     private String endDate;
     private String status;
+    
+    public LeaveApplication()
+    {
+    	
+    }
 
-    public LeaveApplication(String name, String leaveType, String startDate, String endDate, String status) {
-        this.name = name;
+	public LeaveApplication(String empId, String name, String leaveType, String startDate, String endDate, String status) {
+   
+    	this.empId = empId;
+    	this.name = name;
         this.leaveType = leaveType;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
     }
+	
+	public String getEmpId() {
+		return empId;
+	}
 
-    // Getters and Setters
+	public void setEmpId(String empId) {
+		this.empId = empId;
+	}
+
     public Long getId() {
         return id;
     }

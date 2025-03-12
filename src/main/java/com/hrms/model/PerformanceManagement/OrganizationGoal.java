@@ -6,8 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
 @Table(name="organization_goals")
 public class OrganizationGoal {
 	
@@ -15,16 +17,17 @@ public class OrganizationGoal {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable=false)
+	@Column( name="period", nullable=false)
 	private String period;
 	
-    @Column(name = "goal_description", columnDefinition = "TEXT", nullable = false)
+	
+    @Column(name = "goalDescription", nullable = false)
 	private String goalDescription;
 	
-	@Column(nullable=false)
+	@Column(name="target", nullable=false)
 	private String target;
 	
-	@Column(name="rollup_method")
+	@Column(name="rollupMethod")
 	private String rollupMethod;
 
 	public OrganizationGoal(Long id, String period, String goalDescription, String target, String rollupMethod) {

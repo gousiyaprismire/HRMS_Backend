@@ -33,7 +33,7 @@ public class OrganizationGoalImpl implements OrganizationGoalService{
 
 	@Override
 	public OrganizationGoal updateOrganizationGoal(Long id, OrganizationGoal goal) {
-		return null;
+		return organizationGoalRepository.findById(id).orElseThrow(() -> new RuntimeException("Goal not found"));
 	}
 
 	@Override

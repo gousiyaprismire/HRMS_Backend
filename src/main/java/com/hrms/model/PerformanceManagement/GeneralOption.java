@@ -6,16 +6,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="general-options")
+@NoArgsConstructor
+@Table(name="general_options")
 public class GeneralOption {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name="option-name", nullable=false)
+	@Column(name="optionName", nullable=false)
 	private String optionName;
 	
 	@Column(name="enabled", nullable=false)

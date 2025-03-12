@@ -19,10 +19,6 @@ public class PayslipController {
         this.payslipService = payslipService;
     }
 
-    @GetMapping
-    public List<PayslipEntity> getAllPayslips() {
-        return payslipService.getAllPayslips();
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<PayslipEntity> getPayslipById(@PathVariable Long id) {
@@ -49,4 +45,9 @@ public class PayslipController {
         payslipService.deletePayslip(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/all")
+    public List<PayslipEntity> getAllPayslips() {
+        return payslipService.getAllPayslips();
+    }
+
 }

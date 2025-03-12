@@ -19,7 +19,7 @@ public class BonusesController {
         this.bonusesService = bonusesService;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<BonusesEntity> getAllBonuses() {
         return bonusesService.getAllBonuses();
     }

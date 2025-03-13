@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hrms.model.PerformanceManagement.PerformancePeriod;
 import com.hrms.repository.PerformanceManagement.PerformancePeriodRepository;
 import com.hrms.service.PerformanceManagement.PerformancePeriodService;
 
+@Service
 public class PerformancePeriodImpl implements PerformancePeriodService{
 
 	@Autowired

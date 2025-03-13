@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.hrms.model.PerformanceManagement.AppraisalForm;
 import com.hrms.repository.PerformanceManagement.AppraisalFormRepository;
 import com.hrms.service.PerformanceManagement.AppraisalFormService;
 
+@Service
 public class AppraisalFormServiceImpl implements AppraisalFormService {
 
 	@Autowired

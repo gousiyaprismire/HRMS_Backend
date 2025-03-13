@@ -4,5 +4,5 @@ CREATE TABLE leave_requests (
     leave_type VARCHAR(50) NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
-    status ENUM('Pending', 'Approved', 'Rejected') DEFAULT 'Pending'
+    status VARCHAR(20) NOT NULL DEFAULT 'Pending'
 );

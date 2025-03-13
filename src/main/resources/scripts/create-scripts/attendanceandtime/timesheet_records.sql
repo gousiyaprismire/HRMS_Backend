@@ -1,8 +1,8 @@
-CREATE TABLE timesheet_records (
+CREATE TABLE Timesheet (
     id INT PRIMARY KEY AUTO_INCREMENT,
     date DATE NOT NULL,
     work_hours INT NOT NULL,
     overtime INT DEFAULT 0,
-    shift ENUM('Morning', 'Evening', 'Night') NOT NULL,
+    shift VARCHAR(20) NOT NULL,
     comments TEXT
 );

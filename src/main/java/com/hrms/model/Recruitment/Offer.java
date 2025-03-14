@@ -17,7 +17,7 @@ public class Offer {
     private String position;
     private Double salary;
     private LocalDateTime issuedDate;
-    private String status; // PENDING, ACCEPTED, REJECTED
+    private String status;
 
     public Offer() {
     }

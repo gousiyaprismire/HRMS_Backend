@@ -6,12 +6,9 @@ import java.util.Optional;
 import com.hrms.model.PerformanceManagement.AppraisalForm;
 
 public interface AppraisalFormService {
-
-	AppraisalForm createAppraisalForm(AppraisalForm appraisalForm);
-	Optional<AppraisalForm> getAppraisalFormById(Long id);
-	List<AppraisalForm> getAllAppraisalForms();
-	AppraisalForm updateAppraisalForm(Long id, AppraisalForm updatedForm);
-	void deleteAppraisalForm(Long id);
-	
+    List<AppraisalForm> getAllAppraisalForms();
+    AppraisalForm getAppraisalFormById(Long id);
+    AppraisalForm createAppraisalForm(AppraisalForm appraisalForm);
+    AppraisalForm updateAppraisalForm(Long id, AppraisalForm appraisalForm);
+    void deleteAppraisalForm(Long id);
 }
-

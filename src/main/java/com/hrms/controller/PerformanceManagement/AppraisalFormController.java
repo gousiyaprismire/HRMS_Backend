@@ -21,32 +21,31 @@ import com.hrms.service.PerformanceManagement.AppraisalFormService;
 @RequestMapping("/api/appraisal_forms")
 public class AppraisalFormController {
 
-	@Autowired
-	private AppraisalFormService appraisalFormService;
-	
-	@GetMapping("/{id}")
-	public Optional<AppraisalForm> getAllAppraisalFormsById(@PathVariable Long id){
-		return appraisalFormService.getAppraisalFormById(id);
+	 @Autowired
+	    private AppraisalFormService appraisalFormService;
+
+	    @GetMapping
+	    public List<AppraisalForm> getAllAppraisalForms() {
+	        return appraisalFormService.getAllAppraisalForms();
+	    }
+
+	    @GetMapping("/{id}")
+	    public AppraisalForm getAppraisalFormById(@PathVariable Long id) {
+	        return appraisalFormService.getAppraisalFormById(id);
+	    }
+
+	    @PostMapping
+	    public AppraisalForm createAppraisalForm(@RequestBody AppraisalForm appraisalForm) {
+	        return appraisalFormService.createAppraisalForm(appraisalForm);
+	    }
+
+	    @PutMapping("/{id}")
+	    public AppraisalForm updateAppraisalForm(@PathVariable Long id, @RequestBody AppraisalForm appraisalForm) {
+	        return appraisalFormService.updateAppraisalForm(id, appraisalForm);
+	    }
+
+	    @DeleteMapping("/{id}")
+	    public void deleteAppraisalForm(@PathVariable Long id) {
+	        appraisalFormService.deleteAppraisalForm(id);
+	    }
 	}
-	
-	@GetMapping
-	public List<AppraisalForm> getAllappraisalForms(){
-		return appraisalFormService.getAllAppraisalForms();
-	}
-	
-	@PostMapping
-	public AppraisalForm createAppraisalForm(@RequestBody AppraisalForm appraisalForm) {
-		return appraisalFormService.createAppraisalForm(appraisalForm);
-	}
-	
-	@PutMapping("/{id}")
-	public AppraisalForm updateAppraisalForm(@PathVariable Long id, @RequestBody AppraisalForm updatedForm) {
-		return appraisalFormService.updateAppraisalForm(id, updatedForm);
-	}
-	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<String> deleteAppraisalForm(@PathVariable Long id) {
-	    appraisalFormService.deleteAppraisalForm(id);
-	    return ResponseEntity.ok("Appraisal Form deleted successfully");
-	}	
-}

@@ -14,37 +14,35 @@ import com.hrms.service.PerformanceManagement.AppraisalFormService;
 public class AppraisalFormServiceImpl implements AppraisalFormService {
 
 	@Autowired
-	private AppraisalFormRepository appraisalFormRepository;
-	
-	@Override
-	public AppraisalForm createAppraisalForm(AppraisalForm appraisalForm) {
-		return appraisalFormRepository.save(appraisalForm);
-	}
+    private AppraisalFormRepository appraisalFormRepository;
 
-	@Override
-	public Optional<AppraisalForm> getAppraisalFormById(Long id) {
-		return appraisalFormRepository.findById(id);
-	}
+    @Override
+    public List<AppraisalForm> getAllAppraisalForms() {
+        return appraisalFormRepository.findAll();
+    }
 
-	@Override
-	public List<AppraisalForm> getAllAppraisalForms() {
-		return appraisalFormRepository.findAll();
-	}
+    @Override
+    public AppraisalForm getAppraisalFormById(Long id) {
+        Optional<AppraisalForm> optional = appraisalFormRepository.findById(id);
+        return optional.orElse(null);
+    }
 
-	@Override
-	public AppraisalForm updateAppraisalForm(Long id, AppraisalForm updatedForm) {
-		return appraisalFormRepository.findById(id).map(existingForm -> {
-            existingForm.setEmployeeName(updatedForm.getEmployeeName());
-            existingForm.setManagerName(updatedForm.getManagerName());
-            existingForm.setStatus(updatedForm.getStatus());
-            existingForm.setLastAction(updatedForm.getLastAction());
-            return appraisalFormRepository.save(existingForm);
-        }).orElseThrow(() -> new RuntimeException("AppraisalForm not found with ID: " + id));
-	}
+    @Override
+    public AppraisalForm createAppraisalForm(AppraisalForm appraisalForm) {
+        return appraisalFormRepository.save(appraisalForm);
+    }
 
-	@Override
-	public void deleteAppraisalForm(Long id) {
-		appraisalFormRepository.deleteById(id);
-		
-	}
+    @Override
+    public AppraisalForm updateAppraisalForm(Long id, AppraisalForm appraisalForm) {
+        if (appraisalFormRepository.existsById(id)) {
+            appraisalForm.setId(id);
+            return appraisalFormRepository.save(appraisalForm);
+        }
+        return null;
+    }
+
+    @Override
+    public void deleteAppraisalForm(Long id) {
+        appraisalFormRepository.deleteById(id);
+    }
 }

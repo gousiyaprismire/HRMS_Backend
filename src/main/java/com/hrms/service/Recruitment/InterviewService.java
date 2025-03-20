@@ -4,8 +4,8 @@ import com.hrms.model.Recruitment.Interview;
 import com.hrms.repository.Recruitment.InterviewRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InterviewService {
@@ -16,33 +16,30 @@ public class InterviewService {
         this.interviewRepository = interviewRepository;
     }
 
-    public Interview scheduleInterview(Interview interview) {
-        interview.setStatus("Scheduled");
-        return interviewRepository.save(interview);
-    }
-
     public List<Interview> getAllInterviews() {
         return interviewRepository.findAll();
     }
 
+    // ✅ Add this method to fetch an interview by ID
     public Interview getInterviewById(Long id) {
         return interviewRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Interview not found with id: " + id));
+                .orElseThrow(() -> new RuntimeException("Interview not found"));
     }
 
-    public Interview rescheduleInterview(Long id, LocalDateTime newTime) {
-        Interview interview = interviewRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Interview not found with id: " + id));
+    // ✅ Alternative method that returns Optional
+    public Optional<Interview> getInterviewByIdOptional(Long id) {
+        return interviewRepository.findById(id);
+    }
 
-        interview.setScheduledTime(newTime);
-        interview.setStatus("Rescheduled");
+    public Interview scheduleInterview(Interview interview) {
+        return interviewRepository.save(interview);
+    }
+
+    public Interview saveInterview(Interview interview) {
         return interviewRepository.save(interview);
     }
 
     public void cancelInterview(Long id) {
-        if (!interviewRepository.existsById(id)) {
-            throw new RuntimeException("Interview not found with id: " + id);
-        }
         interviewRepository.deleteById(id);
     }
 }

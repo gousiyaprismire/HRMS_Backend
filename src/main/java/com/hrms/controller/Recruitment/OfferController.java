@@ -1,46 +1,45 @@
 package com.hrms.controller.Recruitment;
 
+
+
 import com.hrms.model.Recruitment.Offer;
 import com.hrms.service.Recruitment.OfferService;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/offers")
 public class OfferController {
 
-    private final OfferService offerService;
+    @Autowired
+    private OfferService offerService;
 
-    public OfferController(OfferService offerService) {
-        this.offerService = offerService;
-    }
-
-    @PostMapping
-    public ResponseEntity<Offer> generateOffer(@RequestBody Offer offer) {
-        Offer newOffer = offerService.generateOffer(offer);
-        return ResponseEntity.ok(newOffer);
+    @GetMapping
+    public List<Offer> getAllOffers() {
+        return offerService.getAllOffers();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Offer> getOfferById(@PathVariable Long id) {
-        return offerService.getOfferById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public Optional<Offer> getOfferById(@PathVariable Long id) {
+        return offerService.getOfferById(id);
     }
 
-    @PutMapping("/{id}/accept")
-    public ResponseEntity<Offer> acceptOffer(@PathVariable Long id) {
-        Optional<Offer> updatedOffer = offerService.acceptOffer(id);
-        return updatedOffer.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    @PostMapping
+    public Offer createOffer(@RequestBody Offer offer) {
+        return offerService.createOffer(offer);
     }
 
-    @PutMapping("/{id}/reject")
-    public ResponseEntity<Offer> rejectOffer(@PathVariable Long id) {
-        Optional<Offer> updatedOffer = offerService.rejectOffer(id);
-        return updatedOffer.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    @PutMapping("/{id}")
+    public Offer updateOffer(@PathVariable Long id, @RequestBody Offer offer) {
+        return offerService.updateOffer(id, offer);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteOffer(@PathVariable Long id) {
+        offerService.deleteOffer(id);
+        return "Offer deleted successfully!";
     }
 }

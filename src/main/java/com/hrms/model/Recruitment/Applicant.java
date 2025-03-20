@@ -35,7 +35,7 @@ public class Applicant {
     private BigDecimal expectedSalary;
 
     @Column(nullable = false)
-    private String resumeUrl;
+    private String resumeUrl = "https://default-resume-url.com";
 
     @Column(nullable = false)
     private String status;
@@ -55,7 +55,7 @@ public class Applicant {
         this.appliedJob = appliedJob;
         this.expectedSalary = expectedSalary;
         this.resumeUrl = resumeUrl;
-        this.status = status;
+       this.status = status;
         this.appreciation = appreciation;
     }
 

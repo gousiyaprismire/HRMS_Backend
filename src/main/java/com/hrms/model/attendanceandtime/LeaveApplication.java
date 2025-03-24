@@ -11,7 +11,7 @@ public class LeaveApplication {
     private Long id;
     
     @Column(name = "emp_id", nullable = false)
-    private String empId; 
+    private String empId = ""; 
     
     private String name;
     private String leaveType;

@@ -43,8 +43,8 @@ public class FeedbackQuestionsController {
 	        return ResponseEntity.status(HttpStatus.CREATED).body(savedQuestion);
 	    }
 
-	    @PutMapping
-	    public ResponseEntity<FeedbackQuestions> updateFeedbackQuestion(
+	    @PutMapping("/{id}")
+	    public ResponseEntity<FeedbackQuestions> updateFeedbackQuestion(@PathVariable Long id,
 	             @RequestBody FeedbackQuestions updatedQuestion) {
 	        try {
 	            FeedbackQuestions updated = feedbackQuestionsService.updateFeedbackQuestion( updatedQuestion.getId(),updatedQuestion);

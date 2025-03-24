@@ -10,9 +10,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.NoArgsConstructor;
 
 @Entity
-//@NoArgsConstructor
+@NoArgsConstructor
 @Table(name="appraisal_forms")
 public class AppraisalForm {
 	
@@ -33,9 +34,12 @@ public class AppraisalForm {
 	@Column(name = "lastAction", nullable = false)
     private java.time.LocalDate lastAction;
     
-    public enum Status {
-        PENDING, APPROVED, REJECTED
-    }
+	public enum Status {
+	    PENDING,
+	    IN_PROGRESS,
+	    APPROVED,  
+	    REJECTED
+	}
 
 	public AppraisalForm(Long id, String employeeName, String managerName, Status status, LocalDate lastAction) {
 		super();

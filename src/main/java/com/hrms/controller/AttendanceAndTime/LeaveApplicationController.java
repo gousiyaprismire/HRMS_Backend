@@ -1,6 +1,6 @@
 package com.hrms.controller.AttendanceAndTime;
 
-import com.hrms.model.attendanceandtime.LeaveApplication;
+import com.hrms.model.attendanceandtime.LeaveApplication; 
 import com.hrms.service.AttendanceAndTime.LeaveApplicationService;
 import org.springframework.web.bind.annotation.*;
 

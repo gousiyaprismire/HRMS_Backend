@@ -4,7 +4,6 @@ import com.hrms.model.attendanceandtime.LeaveApplication;
 import com.hrms.repository.AttendanceAndTime.LeaveApplicationRepository;
 import com.hrms.service.AttendanceAndTime.LeaveApplicationService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -51,5 +50,23 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
     @Override
     public void deleteLeaveApplication(Long id) {
         leaveApplicationRepository.deleteById(id);
+    }
+
+    // **Fetch all pending leave applications**
+    @Override
+    public List<LeaveApplication> getPendingLeaveApplications() {
+        return leaveApplicationRepository.findByStatus("Pending");
+    }
+
+    // **Update leave request status (Approve/Reject)**
+    @Override
+    public LeaveApplication updateLeaveStatus(Long id, String status) {
+        Optional<LeaveApplication> leaveApplicationOptional = leaveApplicationRepository.findById(id);
+        if (leaveApplicationOptional.isPresent()) {
+            LeaveApplication leaveApplication = leaveApplicationOptional.get();
+            leaveApplication.setStatus(status);
+            return leaveApplicationRepository.save(leaveApplication);
+        }
+        return null;
     }
 }

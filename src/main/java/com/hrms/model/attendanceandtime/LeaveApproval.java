@@ -10,8 +10,19 @@ public class LeaveApproval {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(name = "emp_id", nullable = false) 
+    private String empId;
 
-    @Column(name = "name", nullable = false)
+    public String getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(String empId) {
+		this.empId = empId;
+	}
+
+	@Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "leave_type", nullable = false)
@@ -33,8 +44,9 @@ public class LeaveApproval {
 
     public LeaveApproval() {}
 
-    public LeaveApproval(String name, String leaveType, LocalDate startDate, LocalDate endDate, LeaveStatus status) {
+    public LeaveApproval(String name, String empId, String leaveType, LocalDate startDate, LocalDate endDate, LeaveStatus status) {
         this.name = name;
+        this.empId = empId;
         this.leaveType = leaveType;
         this.startDate = startDate;
         this.endDate = endDate;

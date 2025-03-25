@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tax-reports")
-@CrossOrigin(origins = "*")
+@RequestMapping("/api/tax_reports")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TaxController {
 
     @Autowired

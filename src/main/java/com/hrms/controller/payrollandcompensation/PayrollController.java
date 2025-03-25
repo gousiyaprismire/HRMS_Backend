@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/payroll")
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:3000")
 public class PayrollController {
 
     @Autowired

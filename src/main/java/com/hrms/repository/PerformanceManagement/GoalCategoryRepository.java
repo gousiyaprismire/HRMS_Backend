@@ -10,3 +10,5 @@ public interface GoalCategoryRepository extends JpaRepository<GoalCategory, Long
 
 }
 
+
+

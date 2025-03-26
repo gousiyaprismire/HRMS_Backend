@@ -9,3 +9,4 @@ import com.hrms.model.PerformanceManagement.OrganizationGoal;
 public interface OrganizationGoalRepository extends JpaRepository<OrganizationGoal, Long>{
 	
 }
+

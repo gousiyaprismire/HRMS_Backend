@@ -12,5 +12,4 @@ public interface GoalCategoryService {
 	GoalCategory createCategory(GoalCategory category);
 	GoalCategory updateCategory(Long id, GoalCategory category);
 	void deleteCategory(Long id);
-	
 }

@@ -13,5 +13,4 @@ public interface OrganizationGoalService {
 	OrganizationGoal createOrganizationGoal(OrganizationGoal goal);
 	OrganizationGoal updateOrganizationGoal(Long id, OrganizationGoal goal);
 	void deleteOrganizationGoal(Long id);
-	
 }

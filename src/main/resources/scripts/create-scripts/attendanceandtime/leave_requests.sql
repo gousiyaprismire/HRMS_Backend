@@ -7,3 +7,4 @@ CREATE TABLE leave_requests (
     end_date DATE NOT NULL,
     status VARCHAR(20) NOT NULL DEFAULT 'Pending'
 );
+ 

@@ -1,4 +1,4 @@
-CREATE TABLE Timesheet (
+CREATE TABLE timesheet (
     id INT PRIMARY KEY AUTO_INCREMENT,
     date DATE NOT NULL,
     work_hours INT NOT NULL,

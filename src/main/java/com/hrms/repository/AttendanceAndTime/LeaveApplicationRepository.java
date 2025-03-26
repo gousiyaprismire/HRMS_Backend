@@ -12,3 +12,4 @@ public interface LeaveApplicationRepository extends JpaRepository<LeaveApplicati
 
 	List<LeaveApplication> findByStatus(String status);
 }
+ 

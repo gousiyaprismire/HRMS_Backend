@@ -52,13 +52,11 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
         leaveApplicationRepository.deleteById(id);
     }
 
-    // **Fetch all pending leave applications**
     @Override
     public List<LeaveApplication> getPendingLeaveApplications() {
         return leaveApplicationRepository.findByStatus("Pending");
     }
 
-    // **Update leave request status (Approve/Reject)**
     @Override
     public LeaveApplication updateLeaveStatus(Long id, String status) {
         Optional<LeaveApplication> leaveApplicationOptional = leaveApplicationRepository.findById(id);

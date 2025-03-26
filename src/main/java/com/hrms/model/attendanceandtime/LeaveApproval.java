@@ -3,7 +3,7 @@ package com.hrms.model.attendanceandtime;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
-@Entity
+@Entity 
 @Table(name = "leave_requests")
 public class LeaveApproval {
 

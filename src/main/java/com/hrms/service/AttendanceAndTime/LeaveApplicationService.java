@@ -10,9 +10,6 @@ public interface LeaveApplicationService {
     LeaveApplication updateLeaveApplication(Long id, LeaveApplication leaveApplication);
     void deleteLeaveApplication(Long id);
 
-    // Fetch only pending leave applications
     List<LeaveApplication> getPendingLeaveApplications();
-    
-    // Update leave status (Approve/Reject)
     LeaveApplication updateLeaveStatus(Long id, String status);
 }

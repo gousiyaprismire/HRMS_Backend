@@ -10,8 +10,10 @@ import com.hrms.model.PerformanceManagement.OrganizationGoal;
 import com.hrms.repository.PerformanceManagement.OrganizationGoalRepository;
 import com.hrms.service.PerformanceManagement.OrganizationGoalService;
 
+import jakarta.transaction.Transactional;
+
 @Service
-public class OrganizationGoalImpl implements OrganizationGoalService{
+public class OrganizationGoalServiceImpl implements OrganizationGoalService{
 
 	@Autowired
 	private OrganizationGoalRepository organizationGoalRepository;
@@ -28,14 +30,23 @@ public class OrganizationGoalImpl implements OrganizationGoalService{
 
 	@Override
 	public OrganizationGoal createOrganizationGoal(OrganizationGoal goal) {
-		return organizationGoalRepository.save(goal);
+	    if (goal.getGoalDescription() == null || goal.getGoalDescription().trim().isEmpty()) {
+	        throw new IllegalArgumentException("Goal description cannot be null or empty.");
+	    }
+	    return organizationGoalRepository.save(goal);
 	}
 
 	@Override
-	public OrganizationGoal updateOrganizationGoal(Long id, OrganizationGoal goal) {
-		return organizationGoalRepository.findById(id).orElseThrow(() -> new RuntimeException("Goal not found"));
+	@Transactional
+	public OrganizationGoal updateOrganizationGoal(Long id, OrganizationGoal goalDetails) {
+	    return organizationGoalRepository.findById(id).map(existingGoal -> {
+	        existingGoal.setGoalDescription(goalDetails.getGoalDescription());
+	        existingGoal.setTarget(goalDetails.getTarget());
+	        existingGoal.setRollupMethod(goalDetails.getRollupMethod());
+	        existingGoal.setPeriod(goalDetails.getPeriod()); 
+	        return organizationGoalRepository.save(existingGoal);
+	    }).orElseThrow(() -> new RuntimeException("Goal with ID " + id + " not found."));
 	}
-
 	@Override
 	public void deleteOrganizationGoal(Long id) {
 		organizationGoalRepository.deleteById(id);

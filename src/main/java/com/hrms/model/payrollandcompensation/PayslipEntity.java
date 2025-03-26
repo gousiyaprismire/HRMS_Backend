@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 @Table(name = "payslips")
 public class PayslipEntity {
@@ -29,7 +29,7 @@ public class PayslipEntity {
     public PayslipEntity() {}
 
     public PayslipEntity(String empId, String name, String pan, String uan, int bankDays, int lopDays, String doj, String gender, double totalEarnings) {
-        this.empId = empId;
+    	this.empId = empId;
         this.name = name;
         this.pan = pan;
         this.uan = uan;
@@ -38,6 +38,8 @@ public class PayslipEntity {
         this.doj = doj;
         this.gender = gender;
         this.totalEarnings = totalEarnings;
+        this.month = month;
+        this.year = year;
     }
 
     public String getEmpId() {
@@ -124,14 +126,18 @@ public class PayslipEntity {
         return month;
     }
 
-    public void setMonth(String month) {
-        this.month = month;
-    }
+ 
     public int getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    
+   
+    public void setMonth(@JsonProperty("month") String month) {
+        this.month = month;
+    }
+
+    public void setYear(@JsonProperty("year") int year) {
         this.year = year;
     }
 

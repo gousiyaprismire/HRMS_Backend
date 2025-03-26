@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/salary-structure")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3000")
 public class SalaryStructureController {
  
     @Autowired

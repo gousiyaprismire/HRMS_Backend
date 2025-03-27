@@ -84,5 +84,4 @@ public class OrganizationGoal {
 		return "OrganizationGoal [id=" + id + ", period=" + period + ", goalDescription=" + goalDescription
 				+ ", target=" + target + ", rollupMethod=" + rollupMethod + "]";
 	}
-	
 }

@@ -45,6 +45,7 @@ public class GoalCategoriesController {
 		return goalCategoryService.updateCategory(id, categoryDetails);
 	}
 	
+	
 	@DeleteMapping("/{id}")
 	public void deleteGoalCategory(@PathVariable Long id) {
 		goalCategoryService.deleteCategory(id);

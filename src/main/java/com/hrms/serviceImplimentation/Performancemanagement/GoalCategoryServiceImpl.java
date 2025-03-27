@@ -48,3 +48,5 @@ public class GoalCategoryServiceImpl implements GoalCategoryService {
 		goalCategoryRepository.deleteById(id);
 	}
 }
+
+

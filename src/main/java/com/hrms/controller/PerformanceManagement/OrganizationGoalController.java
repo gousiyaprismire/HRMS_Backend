@@ -50,7 +50,6 @@ public class OrganizationGoalController {
 	    return ResponseEntity.ok(savedGoal);
 	}
 
-	
 	@PutMapping("/{id}")
 	public OrganizationGoal updateOrganizationGoal(@PathVariable Long id, @RequestBody OrganizationGoal goal) {
 		return organizationGoalService.updateOrganizationGoal(id, goal);

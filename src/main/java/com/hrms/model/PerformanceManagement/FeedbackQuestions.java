@@ -24,5 +24,6 @@ public class FeedbackQuestions {
 	private Long id;
 	private String question;
 
+
 }
 

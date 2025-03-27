@@ -33,4 +33,5 @@ public class SalaryStructureServiceImpl implements SalaryStructureService {
     public void deleteSalaryStructureById(String empId) {
         salaryStructureRepository.deleteById(empId);
     }
+    
 }

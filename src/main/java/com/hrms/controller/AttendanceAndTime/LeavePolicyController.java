@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/leaves")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:3000")
 public class LeavePolicyController {
 
     @Autowired

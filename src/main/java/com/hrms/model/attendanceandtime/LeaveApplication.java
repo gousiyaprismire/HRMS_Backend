@@ -13,7 +13,7 @@ public class LeaveApplication {
     @Column(name = "emp_id", nullable = false)
     private String empId = ""; 
     
-    private String name;
+    private String name; 
     private String leaveType;
     private String startDate;
     private String endDate;

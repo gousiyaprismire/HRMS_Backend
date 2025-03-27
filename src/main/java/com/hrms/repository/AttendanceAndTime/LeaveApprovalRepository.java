@@ -7,3 +7,4 @@ import java.util.List;
 public interface LeaveApprovalRepository extends JpaRepository<LeaveApproval, Long> {
     List<LeaveApproval> findByStatus(LeaveApproval.LeaveStatus status);
 }
+ 

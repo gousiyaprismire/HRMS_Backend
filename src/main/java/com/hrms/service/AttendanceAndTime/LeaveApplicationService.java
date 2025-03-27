@@ -9,4 +9,7 @@ public interface LeaveApplicationService {
     LeaveApplication createLeaveApplication(LeaveApplication leaveApplication);
     LeaveApplication updateLeaveApplication(Long id, LeaveApplication leaveApplication);
     void deleteLeaveApplication(Long id);
+
+    List<LeaveApplication> getPendingLeaveApplications();
+    LeaveApplication updateLeaveStatus(Long id, String status);
 }

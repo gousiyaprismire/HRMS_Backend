@@ -37,7 +37,7 @@ public class FeedbackQuestionsServiceImpl implements FeedbackQuestionsService {
     @Override
     public FeedbackQuestions updateFeedbackQuestion(Long id, FeedbackQuestions updatedQuestion) {
         return feedbackQuestionsRepository.findById(id).map(question -> {
-            question.setText(updatedQuestion.getText());
+            question.setQuestion(updatedQuestion.getQuestion());
             return feedbackQuestionsRepository.save(question);
         }).orElseThrow(() -> new RuntimeException("Feedback Question not found"));
     }

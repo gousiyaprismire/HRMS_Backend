@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/leave-applications")
+@RequestMapping("/api/leave-applications") 
 @CrossOrigin(origins = "http://localhost:3000")
 public class LeaveApplicationController {
 
@@ -20,6 +20,11 @@ public class LeaveApplicationController {
     @GetMapping
     public List<LeaveApplication> getAllLeaveApplications() {
         return leaveApplicationService.getAllLeaveApplications();
+    }
+
+    @GetMapping("/pending")
+    public List<LeaveApplication> getAllPendingLeaveApplications() {
+        return leaveApplicationService.getPendingLeaveApplications();
     }
 
     @GetMapping("/{id}")
@@ -35,6 +40,11 @@ public class LeaveApplicationController {
     @PutMapping("/{id}")
     public LeaveApplication updateLeaveApplication(@PathVariable Long id, @RequestBody LeaveApplication leaveApplication) {
         return leaveApplicationService.updateLeaveApplication(id, leaveApplication);
+    }
+
+    @PutMapping("/updateStatus/{id}")
+    public LeaveApplication updateLeaveStatus(@PathVariable Long id, @RequestParam String status) {
+        return leaveApplicationService.updateLeaveStatus(id, status);
     }
 
     @DeleteMapping("/{id}")

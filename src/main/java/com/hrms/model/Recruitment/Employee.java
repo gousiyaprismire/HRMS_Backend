@@ -48,10 +48,10 @@ public class Employee {
     @Temporal(TemporalType.DATE)
     private Date joiningDate;
 
-    // Default Constructor
+
     public Employee() {}
 
-    // Parameterized Constructor
+
     public Employee(String fullName, String email, String phoneNumber, String jobRole, String department,
                     String reportingManager, String workLocation, Date joiningDate) {
         this.fullName = fullName;
@@ -64,7 +64,7 @@ public class Employee {
         this.joiningDate = joiningDate;
     }
 
-    // Getters and Setters
+    
     public Long getId() {
         return id;
     }

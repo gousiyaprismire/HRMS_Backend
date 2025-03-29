@@ -1,7 +1,5 @@
 package com.hrms.model.SelfService;
 
-
-
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -13,41 +11,93 @@ public class SupportTicket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
-    private String subject;
+    @Column(name = "employee_id", nullable = false)
+    private Long employeeId;
+
+    @Column(name = "issue_type", nullable = false)
+    private String issueType;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
-    private String status;
-    private LocalDateTime createdAt;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TicketStatus status = TicketStatus.OPEN;
 
-    public SupportTicket() {
-        this.createdAt = LocalDateTime.now();
-        this.status = "Open";
-    }
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-    public SupportTicket(Long userId, String subject, String description) {
-        this.userId = userId;
-        this.subject = subject;
+    @Column(name = "updated_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    private LocalDateTime updatedAt = LocalDateTime.now();
+
+    public SupportTicket() {}
+
+    public SupportTicket(Long employeeId, String issueType, String description) {
+        this.employeeId = employeeId;
+        this.issueType = issueType;
         this.description = description;
-        this.status = "Open";
+        this.status = TicketStatus.OPEN;
         this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
+    public Long getId() {
+        return id;
+    }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Long getUserId() { return userId; }
-    public void setUserId(Long userId) { this.userId = userId; }
+    public Long getEmployeeId() {
+        return employeeId;
+    }
 
-    public String getSubject() { return subject; }
-    public void setSubject(String subject) { this.subject = subject; }
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public String getIssueType() {
+        return issueType;
+    }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public void setIssueType(String issueType) {
+        this.issueType = issueType;
+    }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public TicketStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TicketStatus status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    // Enum for Ticket Status
+    public enum TicketStatus {
+        OPEN,
+        IN_PROGRESS,
+        RESOLVED,
+        CLOSED
+    }
 }

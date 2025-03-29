@@ -2,71 +2,77 @@ package com.hrms.controller.Recruitment;
 
 import com.hrms.model.Recruitment.Interview;
 import com.hrms.service.Recruitment.InterviewService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/interviews")
 @CrossOrigin(origins = "http://localhost:3000")
 public class InterviewController {
 
+    private static final Logger logger = LoggerFactory.getLogger(InterviewController.class);
     private final InterviewService interviewService;
 
     public InterviewController(InterviewService interviewService) {
         this.interviewService = interviewService;
-        System.out.println("InterviewController Loaded!");
+        logger.info("InterviewController Loaded!");
     }
-
 
     @GetMapping
     public ResponseEntity<List<Interview>> getAllInterviews() {
-        List<Interview> interviews = interviewService.getAllInterviews();
-        return ResponseEntity.ok(interviews);
+        return ResponseEntity.ok(interviewService.getAllInterviews());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Interview> getInterviewById(@PathVariable Long id) {
+    public ResponseEntity<?> getInterviewById(@PathVariable Long id) {
         try {
-            Interview interview = interviewService.getInterviewById(id);
-            return ResponseEntity.ok(interview);
+            return ResponseEntity.ok(interviewService.getInterviewById(id));
         } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Interview not found");
         }
     }
 
-
     @PostMapping
-    public ResponseEntity<Interview> scheduleInterview(@RequestBody Interview interview) {
-        Interview scheduledInterview = interviewService.scheduleInterview(interview);
-        return ResponseEntity.status(HttpStatus.CREATED).body(scheduledInterview);
+    public ResponseEntity<?> scheduleInterview(@RequestBody Interview interview) {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(interviewService.scheduleInterview(interview));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to schedule interview");
+        }
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateInterviewStatus(@PathVariable Long id, @RequestBody Map<String, String> updates) {
+        Optional<Interview> interviewOptional = interviewService.getInterviewByIdOptional(id); // Updated
 
-    @PutMapping("/{id}/reschedule")
-    public ResponseEntity<Interview> rescheduleInterview(@PathVariable Long id, @RequestParam LocalDateTime newTime) {
-        try {
-            Interview updatedInterview = interviewService.rescheduleInterview(id, newTime);
-            return ResponseEntity.ok(updatedInterview);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        if (interviewOptional.isPresent()) {
+            Interview interview = interviewOptional.get();
+            String newStatus = updates.get("status");
+
+            interview.setStatus(newStatus);
+            interviewService.saveInterview(interview);
+
+            return ResponseEntity.ok(interview);
+        } else {
+            return ResponseEntity.status(404).body("Interview not found");
         }
     }
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> cancelInterview(@PathVariable Long id) {
+    public ResponseEntity<?> cancelInterview(@PathVariable Long id) {
         try {
             interviewService.cancelInterview(id);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.ok("Interview cancelled successfully");
         } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Interview not found");
         }
     }
 }

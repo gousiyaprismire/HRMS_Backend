@@ -8,6 +8,5 @@ CREATE TABLE profile_management (
     address TEXT,
     gender ENUM('Male', 'Female', 'Other') NOT NULL,
     department VARCHAR(255) NOT NULL,
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (employee_id) REFERENCES employees(id) ON DELETE CASCADE
 );

@@ -64,7 +64,7 @@ public class Employee {
         this.joiningDate = joiningDate;
     }
 
-    
+
     public Long getId() {
         return id;
     }

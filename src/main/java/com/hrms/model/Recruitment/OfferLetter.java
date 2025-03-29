@@ -43,7 +43,7 @@ public class OfferLetter {
     @Column(name = "work_location")
     private String workLocation;
 
-    // Constructors
+
     public OfferLetter() {}
 
     public OfferLetter(String candidateEmail, String candidateName, String employmentType, String hrContactPerson,
@@ -61,7 +61,7 @@ public class OfferLetter {
         this.workLocation = workLocation;
     }
 
-    // Getters and Setters
+
     public Long getId() {
         return id;
     }

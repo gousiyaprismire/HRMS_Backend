@@ -24,12 +24,12 @@ public class Interview {
     private String interviewer;
 
     @Column(name = "mode", nullable = false)
-    private String mode;  // Changed from Enum to String
+    private String mode;
 
     @Column(name = "status", nullable = false)
-    private String status = "Scheduled";  // Default status
+    private String status = "Scheduled";
 
-    // Getters and Setters
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

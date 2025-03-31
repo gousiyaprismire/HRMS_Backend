@@ -1,6 +1,9 @@
 package com.hrms.model.SelfService;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -23,8 +26,11 @@ public class Profile {
     @Column(nullable = false)
     private String phone;
 
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "date_of_birth", nullable = false)
     private LocalDate dateOfBirth;
+
 
     @Column(columnDefinition = "TEXT")
     private String address;
@@ -36,7 +42,8 @@ public class Profile {
     @Column(nullable = false)
     private String department;
 
-    public Profile() {}
+    public Profile() {
+    }
 
     public Profile(Long employeeId, String name, String email, String phone, LocalDate dateOfBirth,
                    String address, Gender gender, String department) {
@@ -97,7 +104,6 @@ public class Profile {
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
     public String getAddress() {
         return address;
     }
@@ -123,8 +129,11 @@ public class Profile {
     }
 
     public enum Gender {
-        MALE,
-        FEMALE,
-        OTHER
+        MALE, FEMALE, OTHER;
+
+        @JsonCreator
+        public static Gender fromString(String value) {
+            return Gender.valueOf(value.toUpperCase());
+        }
     }
 }

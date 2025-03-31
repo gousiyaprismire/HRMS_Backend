@@ -41,6 +41,7 @@ public class ProfileController {
 
     @PostMapping
     public ResponseEntity<Profile> createProfile(@RequestBody Profile profile) {
+        System.out.println("Received Profile Data: " + profile);
         return ResponseEntity.ok(profileService.createProfile(profile));
     }
 

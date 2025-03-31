@@ -1,109 +1,58 @@
 package com.hrms.model.SelfService;
 
-
 import jakarta.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "expense_reimbursement")
 public class Expense {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "employee_id", nullable = false)
-    private Long employeeId;
-
     @Column(name = "expense_title", nullable = false)
     private String expenseTitle;
 
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal amount;
-
-    @Column(name = "receipt_path")
-    private String receiptPath;
-
-    @Column(name = "submitted_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime submittedAt = LocalDateTime.now();
-
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private ExpenseStatus status = ExpenseStatus.PENDING;
+    private double amount;
 
-    public Expense() {}
+    @Column(nullable = false)
+    private String status = "Pending";
 
-    public Expense(Long employeeId, String expenseTitle, BigDecimal amount, String receiptPath) {
-        this.employeeId = employeeId;
+    @Column(nullable = false)
+    private Integer employeeId;
+
+    @Lob
+    private String receiptBase64;
+
+
+    public Expense() {
+    }
+
+
+    public Expense(String expenseTitle, double amount, String receiptBase64, Integer employeeId) {
         this.expenseTitle = expenseTitle;
         this.amount = amount;
-        this.receiptPath = receiptPath;
-        this.submittedAt = LocalDateTime.now();
-        this.status = ExpenseStatus.PENDING;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Long employeeId) {
+        this.receiptBase64 = receiptBase64;
+        this.status = "Pending";
         this.employeeId = employeeId;
     }
 
-    public String getExpenseTitle() {
-        return expenseTitle;
-    }
 
-    public void setExpenseTitle(String expenseTitle) {
-        this.expenseTitle = expenseTitle;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
+    public String getExpenseTitle() { return expenseTitle; }
+    public void setExpenseTitle(String expenseTitle) { this.expenseTitle = expenseTitle; }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
+    public double getAmount() { return amount; }
+    public void setAmount(double amount) { this.amount = amount; }
 
-    public String getReceiptPath() {
-        return receiptPath;
-    }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
-    public void setReceiptPath(String receiptPath) {
-        this.receiptPath = receiptPath;
-    }
+    public Integer getEmployeeId() { return employeeId; }
+    public void setEmployeeId(Integer employeeId) { this.employeeId = employeeId; }
 
-    public LocalDateTime getSubmittedAt() {
-        return submittedAt;
-    }
-
-    public void setSubmittedAt(LocalDateTime submittedAt) {
-        this.submittedAt = submittedAt;
-    }
-
-    public ExpenseStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(ExpenseStatus status) {
-        this.status = status;
-    }
-
-    // Embedded Enum for Expense Status
-    public enum ExpenseStatus {
-        PENDING,
-        APPROVED,
-        REJECTED
-    }
+    public String getReceiptBase64() { return receiptBase64; }
+    public void setReceiptBase64(String receiptBase64) { this.receiptBase64 = receiptBase64; }
 }
-

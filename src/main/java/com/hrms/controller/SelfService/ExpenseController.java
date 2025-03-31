@@ -1,14 +1,11 @@
 package com.hrms.controller.SelfService;
 
 
-
 import com.hrms.model.SelfService.Expense;
-
-import com.hrms.service.SelfService.ExpenseService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.hrms.repository.Selfservice.ExpenseRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @RestController
@@ -17,43 +14,18 @@ import java.util.List;
 public class ExpenseController {
 
     @Autowired
-    private ExpenseService expenseService;
-
+    private ExpenseRepository expenseRepository;
 
     @GetMapping
     public List<Expense> getAllExpenses() {
-        return expenseService.getAllExpenses();
+        return expenseRepository.findAll();
     }
 
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Expense> getExpenseById(@PathVariable Long id) {
-        Expense expense = expenseService.getExpenseById(id);
-        return expense != null ? ResponseEntity.ok(expense) : ResponseEntity.notFound().build();
-    }
-
-
-    @GetMapping("/employee/{employeeId}")
-    public List<Expense> getExpensesByEmployeeId(@PathVariable Long employeeId) {
-        return expenseService.getExpensesByEmployeeId(employeeId);
-    }
-
-
-    @PostMapping
-    public ResponseEntity<Expense> createExpense(@RequestBody Expense expense) {
-        return ResponseEntity.ok(expenseService.createExpense(expense));
-    }
-
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Expense> updateExpense(@PathVariable Long id, @RequestBody Expense expense) {
-        Expense updatedExpense = expenseService.updateExpense(id, expense);
-        return updatedExpense != null ? ResponseEntity.ok(updatedExpense) : ResponseEntity.notFound().build();
-    }
-
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteExpense(@PathVariable Long id) {
-        return expenseService.deleteExpense(id) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    @PostMapping(consumes = "application/json")
+    public ResponseEntity<Expense> addExpense(@RequestBody Expense expense) {
+        expense.setStatus("Pending");
+        Expense savedExpense = expenseRepository.save(expense);
+        return ResponseEntity.ok(savedExpense);
     }
 }

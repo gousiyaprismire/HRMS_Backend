@@ -1,27 +1,31 @@
 package com.hrms.controller.SelfService;
 
-import com.hrms.model.SelfService.Expense;
-import com.hrms.service.SelfService.ExpenseService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
+import com.hrms.model.SelfService.Expense;
+import com.hrms.repository.Selfservice.ExpenseRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/self/expenses")
+@RequestMapping("/api/expenses")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ExpenseController {
 
     @Autowired
-    private ExpenseService expenseService;
+    private ExpenseRepository expenseRepository;
 
-    @PostMapping
-    public Expense submitExpense(@RequestBody Expense expense) {
-        return expenseService.submitExpense(expense);
+    @GetMapping
+    public List<Expense> getAllExpenses() {
+        return expenseRepository.findAll();
     }
 
-    @GetMapping("/{userId}")
-    public List<Expense> getExpensesByUser(@PathVariable Long userId) {
-        return expenseService.getExpensesByUser(userId);
+
+    @PostMapping(consumes = "application/json")
+    public ResponseEntity<Expense> addExpense(@RequestBody Expense expense) {
+        expense.setStatus("Pending");
+        Expense savedExpense = expenseRepository.save(expense);
+        return ResponseEntity.ok(savedExpense);
     }
 }
-

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "offer_letters") // Matches the database table
+@Table(name = "offer_letters")
 public class Offer {
 
     @Id
@@ -27,9 +27,8 @@ public class Offer {
     @Column(name = "salary_package", nullable = false, precision = 10, scale = 2)
     private BigDecimal salaryPackage;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "employment_type", nullable = false)
-    private EmploymentType employmentType;
+    private String employmentType;
 
     @Column(name = "work_location", nullable = false)
     private String workLocation;
@@ -40,15 +39,14 @@ public class Offer {
     @Column(name = "hr_contact_person", nullable = false)
     private String hrContactPerson;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private Status status = Status.PENDING;
+    private String status = "Pending";
 
     public Offer() {}
 
     public Offer(String candidateName, String candidateEmail, String phoneNumber, String jobPosition,
-                 BigDecimal salaryPackage, EmploymentType employmentType, String workLocation,
-                 LocalDate offerDate, String hrContactPerson, Status status) {
+                 BigDecimal salaryPackage, String employmentType, String workLocation,
+                 LocalDate offerDate, String hrContactPerson, String status) {
         this.candidateName = candidateName;
         this.candidateEmail = candidateEmail;
         this.phoneNumber = phoneNumber;
@@ -109,11 +107,11 @@ public class Offer {
         this.salaryPackage = salaryPackage;
     }
 
-    public EmploymentType getEmploymentType() {
+    public String getEmploymentType() {
         return employmentType;
     }
 
-    public void setEmploymentType(EmploymentType employmentType) {
+    public void setEmploymentType(String employmentType) {
         this.employmentType = employmentType;
     }
 
@@ -141,19 +139,11 @@ public class Offer {
         this.hrContactPerson = hrContactPerson;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
-    }
-
-    public enum EmploymentType {
-        FULL_TIME, PART_TIME, CONTRACT
-    }
-
-    public enum Status {
-        PENDING, ACCEPTED, REJECTED
     }
 }

@@ -1,77 +1,58 @@
 package com.hrms.model.SelfService;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
 
 @Entity
-@Table(name = "expenses")
+@Table(name = "expense_reimbursement")
 public class Expense {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
-    private String description;
-    private Double amount;
-    private LocalDate date;
-    private String status;
+    @Column(name = "expense_title", nullable = false)
+    private String expenseTitle;
 
-    public Expense() {}
+    @Column(nullable = false)
+    private double amount;
 
-    public Expense(Long userId, String description, Double amount, LocalDate date, String status) {
-        this.userId = userId;
-        this.description = description;
+    @Column(nullable = false)
+    private String status = "Pending";
+
+    @Column(nullable = false)
+    private Integer employeeId;
+
+    @Lob
+    private String receiptBase64;
+
+
+    public Expense() {
+    }
+
+
+    public Expense(String expenseTitle, double amount, String receiptBase64, Integer employeeId) {
+        this.expenseTitle = expenseTitle;
         this.amount = amount;
-        this.date = date;
-        this.status = status;
+        this.receiptBase64 = receiptBase64;
+        this.status = "Pending";
+        this.employeeId = employeeId;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Long getUserId() {
-        return userId;
-    }
+    public String getExpenseTitle() { return expenseTitle; }
+    public void setExpenseTitle(String expenseTitle) { this.expenseTitle = expenseTitle; }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+    public double getAmount() { return amount; }
+    public void setAmount(double amount) { this.amount = amount; }
 
-    public String getDescription() {
-        return description;
-    }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public Integer getEmployeeId() { return employeeId; }
+    public void setEmployeeId(Integer employeeId) { this.employeeId = employeeId; }
 
-    public Double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    public String getReceiptBase64() { return receiptBase64; }
+    public void setReceiptBase64(String receiptBase64) { this.receiptBase64 = receiptBase64; }
 }

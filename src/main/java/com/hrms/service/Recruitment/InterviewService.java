@@ -1,11 +1,14 @@
 package com.hrms.service.Recruitment;
 
+import com.hrms.model.Recruitment.Employee;
 import com.hrms.model.Recruitment.Interview;
+import com.hrms.repository.Recruitment.EmployeeRepository;
 import com.hrms.repository.Recruitment.InterviewRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InterviewService {
@@ -16,33 +19,73 @@ public class InterviewService {
         this.interviewRepository = interviewRepository;
     }
 
-    public Interview scheduleInterview(Interview interview) {
-        interview.setStatus("Scheduled");
-        return interviewRepository.save(interview);
-    }
-
     public List<Interview> getAllInterviews() {
         return interviewRepository.findAll();
     }
 
+    // ✅ Add this method to fetch an interview by ID
     public Interview getInterviewById(Long id) {
         return interviewRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Interview not found with id: " + id));
+                .orElseThrow(() -> new RuntimeException("Interview not found"));
     }
 
-    public Interview rescheduleInterview(Long id, LocalDateTime newTime) {
-        Interview interview = interviewRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Interview not found with id: " + id));
+    // ✅ Alternative method that returns Optional
+    public Optional<Interview> getInterviewByIdOptional(Long id) {
+        return interviewRepository.findById(id);
+    }
 
-        interview.setScheduledTime(newTime);
-        interview.setStatus("Rescheduled");
+    public Interview scheduleInterview(Interview interview) {
+        return interviewRepository.save(interview);
+    }
+
+    public Interview saveInterview(Interview interview) {
         return interviewRepository.save(interview);
     }
 
     public void cancelInterview(Long id) {
-        if (!interviewRepository.existsById(id)) {
-            throw new RuntimeException("Interview not found with id: " + id);
-        }
         interviewRepository.deleteById(id);
+    }
+
+    @Service
+    public static class EmployeeService {
+
+        private final EmployeeRepository employeeRepository;
+
+        @Autowired
+        public EmployeeService(EmployeeRepository employeeRepository) {
+            this.employeeRepository = employeeRepository;
+        }
+
+        public List<Employee> getAllEmployees() {
+            return employeeRepository.findAll();
+        }
+
+        public Optional<Employee> getEmployeeById(Long id) {
+            return employeeRepository.findById(id);
+        }
+
+        public Employee addEmployee(Employee employee) {
+            return employeeRepository.save(employee);
+        }
+
+        public Employee updateEmployee(Long id, Employee updatedEmployee) {
+            return employeeRepository.findById(id)
+                    .map(employee -> {
+                        employee.setFullName(updatedEmployee.getFullName());
+                        employee.setEmail(updatedEmployee.getEmail());
+                        employee.setPhoneNumber(updatedEmployee.getPhoneNumber());
+                        employee.setJobRole(updatedEmployee.getJobRole());
+                        employee.setDepartment(updatedEmployee.getDepartment());
+                        employee.setReportingManager(updatedEmployee.getReportingManager());
+                        employee.setWorkLocation(updatedEmployee.getWorkLocation());
+                        employee.setJoiningDate(updatedEmployee.getJoiningDate());
+                        return employeeRepository.save(employee);
+                    })
+                    .orElseThrow(() -> new RuntimeException("Employee not found"));
+        }
+
+        public void deleteEmployee(Long id) {
+            employeeRepository.deleteById(id);
+        }
     }
 }

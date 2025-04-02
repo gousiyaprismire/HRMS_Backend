@@ -1,5 +1,6 @@
 package com.hrms.model.SelfService;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -93,11 +94,20 @@ public class SupportTicket {
         this.updatedAt = updatedAt;
     }
 
-    // Enum for Ticket Status
     public enum TicketStatus {
         OPEN,
         IN_PROGRESS,
         RESOLVED,
-        CLOSED
+        CLOSED,
+        PENDING;
+        @JsonCreator
+        public static TicketStatus fromString(String value) {
+            for (TicketStatus status : TicketStatus.values()) {
+                if (status.name().equalsIgnoreCase(value)) {
+                    return status;
+                }
+            }
+            throw new IllegalArgumentException("Invalid TicketStatus: " + value);
+        }
     }
 }

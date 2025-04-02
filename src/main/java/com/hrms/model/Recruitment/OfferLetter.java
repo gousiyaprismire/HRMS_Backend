@@ -4,6 +4,7 @@ package com.hrms.model.Recruitment;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "offer_letters")
@@ -34,15 +35,15 @@ public class OfferLetter {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "salary_package")
+    @Column(name = "salary_package", nullable = false)
     private Double salaryPackage;
+
 
     @Column(name = "status")
     private String status;
 
     @Column(name = "work_location")
     private String workLocation;
-
 
     public OfferLetter() {}
 

@@ -33,18 +33,23 @@ public class SupportTicketService {
         return supportTicketRepository.save(ticket);
     }
 
-    public SupportTicket updateTicket(Long id, SupportTicket updatedTicket) {
-        Optional<SupportTicket> existingTicket = supportTicketRepository.findById(id);
-        if (existingTicket.isPresent()) {
-            SupportTicket ticket = existingTicket.get();
-            ticket.setIssueType(updatedTicket.getIssueType());
-            ticket.setDescription(updatedTicket.getDescription());
-            ticket.setStatus(updatedTicket.getStatus());
-            ticket.setUpdatedAt(updatedTicket.getUpdatedAt());
-            return supportTicketRepository.save(ticket);
+    public SupportTicket updateTicketStatus(Long ticketId, String status) {
+        try {
+
+            SupportTicket.TicketStatus ticketStatus = SupportTicket.TicketStatus.valueOf(status.toUpperCase());
+
+            SupportTicket ticket = supportTicketRepository.findById(ticketId).orElse(null);
+            if (ticket != null) {
+                ticket.setStatus(ticketStatus);
+                return supportTicketRepository.save(ticket);
+            }
+        } catch (IllegalArgumentException e) {
+            
+            throw new IllegalArgumentException("Invalid status value: " + status);
         }
         return null;
     }
+
 
     public boolean deleteTicket(Long id) {
         if (supportTicketRepository.existsById(id)) {

@@ -1,6 +1,5 @@
 package com.hrms.controller.Recruitment;
 
-
 import com.hrms.BenefitsCompliance.dto.OfferLetterRequest;
 import com.hrms.model.Recruitment.OfferLetter;
 import com.hrms.service.Recruitment.OfferLetterService;
@@ -23,16 +22,18 @@ public class OfferLetterController {
 
 
     @PostMapping
-    public ResponseEntity<OfferLetter> createOfferLetter(@Valid @RequestBody OfferLetterRequest request) {
-        return ResponseEntity.ok(service.saveOfferLetter(request));
+    public ResponseEntity<OfferLetter> createOfferLetter(@RequestBody OfferLetterRequest request) {
+        if (request.getCandidateEmail() == null || request.getCandidateName() == null) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        OfferLetter savedOffer = service.saveOfferLetter(request);
+        return ResponseEntity.ok(savedOffer);
     }
-
 
     @GetMapping
     public ResponseEntity<List<OfferLetter>> getAllOfferLetters() {
         return ResponseEntity.ok(service.getAllOfferLetters());
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<OfferLetter> getOfferLetterById(@PathVariable Long id) {

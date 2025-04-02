@@ -35,16 +35,16 @@ public class SupportTicketService {
 
     public SupportTicket updateTicketStatus(Long ticketId, String status) {
         try {
-            // Convert the string to an enum value
+
             SupportTicket.TicketStatus ticketStatus = SupportTicket.TicketStatus.valueOf(status.toUpperCase());
 
             SupportTicket ticket = supportTicketRepository.findById(ticketId).orElse(null);
             if (ticket != null) {
-                ticket.setStatus(ticketStatus);  // Set the enum status
+                ticket.setStatus(ticketStatus);
                 return supportTicketRepository.save(ticket);
             }
         } catch (IllegalArgumentException e) {
-            // Handle invalid status
+            
             throw new IllegalArgumentException("Invalid status value: " + status);
         }
         return null;

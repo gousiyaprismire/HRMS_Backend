@@ -1,10 +1,9 @@
 package com.hrms.service.Recruitment;
 
-
-
 import com.hrms.BenefitsCompliance.dto.OfferLetterRequest;
 import com.hrms.model.Recruitment.OfferLetter;
 import com.hrms.repository.Recruitment.OfferLetterRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,12 +11,12 @@ import java.util.Optional;
 
 @Service
 public class OfferLetterService {
-    private final OfferLetterRepository repository;
+    private final OfferLetterRepository offerLetterRepository;
 
-    public OfferLetterService(OfferLetterRepository repository) {
-        this.repository = repository;
+    @Autowired
+    public OfferLetterService(OfferLetterRepository offerLetterRepository) {
+        this.offerLetterRepository = offerLetterRepository;
     }
-
 
     public OfferLetter saveOfferLetter(OfferLetterRequest request) {
         OfferLetter offerLetter = new OfferLetter(
@@ -32,20 +31,19 @@ public class OfferLetterService {
                 request.getStatus(),
                 request.getWorkLocation()
         );
-        return repository.save(offerLetter);
+        return offerLetterRepository.save(offerLetter);
     }
 
-
     public List<OfferLetter> getAllOfferLetters() {
-        return repository.findAll();
+        return offerLetterRepository.findAll();
     }
 
     public Optional<OfferLetter> getOfferLetterById(Long id) {
-        return repository.findById(id);
+        return offerLetterRepository.findById(id);
     }
 
     public Optional<OfferLetter> updateOfferLetter(Long id, OfferLetterRequest request) {
-        return repository.findById(id).map(existingOffer -> {
+        return offerLetterRepository.findById(id).map(existingOffer -> {
             existingOffer.setCandidateEmail(request.getCandidateEmail());
             existingOffer.setCandidateName(request.getCandidateName());
             existingOffer.setEmploymentType(request.getEmploymentType());
@@ -56,7 +54,11 @@ public class OfferLetterService {
             existingOffer.setSalaryPackage(request.getSalaryPackage());
             existingOffer.setStatus(request.getStatus());
             existingOffer.setWorkLocation(request.getWorkLocation());
-            return repository.save(existingOffer);
+            return offerLetterRepository.save(existingOffer);
         });
+    }
+
+    public void deleteOfferLetter(Long id) {
+        offerLetterRepository.deleteById(id);
     }
 }

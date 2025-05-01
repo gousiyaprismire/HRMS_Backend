@@ -1,0 +1,10 @@
+CREATE TABLE user_active_time (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    date DATE NOT NULL,
+    active_minutes INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT FALSE,
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);

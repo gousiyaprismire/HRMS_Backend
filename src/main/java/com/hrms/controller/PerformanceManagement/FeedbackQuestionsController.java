@@ -49,7 +49,7 @@ public class FeedbackQuestionsController {
 	    public ResponseEntity<FeedbackQuestions> updateFeedbackQuestion(@PathVariable Long id,
 	            @RequestBody FeedbackQuestions updatedQuestion) {
 	       try {
-	           updatedQuestion.setId(id); 
+//	           updatedQuestion.setId(id); 
 	           FeedbackQuestions updated = feedbackQuestionsService.updateFeedbackQuestion(id, updatedQuestion);
 	           return ResponseEntity.ok(updated);
 	       } catch (RuntimeException e) {

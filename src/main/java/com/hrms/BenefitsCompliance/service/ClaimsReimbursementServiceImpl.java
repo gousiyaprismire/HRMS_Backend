@@ -44,11 +44,11 @@ public class ClaimsReimbursementServiceImpl implements ClaimsReimbursementServic
         ClaimsReimbursement existingClaim = repository.findById(id)
                 .orElseThrow(() -> new ClaimsReimbursementNotFoundException("Claim not found with id: " + id));
 
-        existingClaim.setClaimType(dto.getClaimType());
-        existingClaim.setClaimAmount(dto.getClaimAmount());
-        existingClaim.setClaimDate(dto.getClaimDate());
-        existingClaim.setStatus(dto.getStatus());
-        existingClaim.setRemarks(dto.getRemarks());
+//        existingClaim.setClaimType(dto.getClaimType());
+//        existingClaim.setClaimAmount(dto.getClaimAmount());
+//        existingClaim.setClaimDate(dto.getClaimDate());
+//        existingClaim.setStatus(dto.getStatus());
+//        existingClaim.setRemarks(dto.getRemarks());
 
         repository.save(existingClaim);
         return convertToDTO(existingClaim);
@@ -63,25 +63,25 @@ public class ClaimsReimbursementServiceImpl implements ClaimsReimbursementServic
 
     private ClaimsReimbursementDTO convertToDTO(ClaimsReimbursement claim) {
         return new ClaimsReimbursementDTO(
-                claim.getId(),
-                claim.getEmployeeId(),
-                claim.getClaimType(),
-                claim.getClaimAmount(),
-                claim.getClaimDate(),
-                claim.getStatus(),
-                claim.getRemarks()
+//                claim.getId(),
+//                claim.getEmployeeId(),
+//                claim.getClaimType(),
+//                claim.getClaimAmount(),
+//                claim.getClaimDate(),
+//                claim.getStatus(),
+//                claim.getRemarks()
         );
     }
 
     private ClaimsReimbursement convertToEntity(ClaimsReimbursementDTO dto) {
         return new ClaimsReimbursement(
-                dto.getId(),
-                dto.getEmployeeId(),
-                dto.getClaimType(),
-                dto.getClaimAmount(),
-                dto.getClaimDate(),
-                dto.getStatus(),
-                dto.getRemarks()
+//                dto.getId(),
+//                dto.getEmployeeId(),
+//                dto.getClaimType(),
+//                dto.getClaimAmount(),
+//                dto.getClaimDate(),
+//                dto.getStatus(),
+//                dto.getRemarks()
         );
     }
 }

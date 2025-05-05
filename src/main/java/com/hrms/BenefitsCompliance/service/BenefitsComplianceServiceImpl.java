@@ -40,10 +40,10 @@ public class BenefitsComplianceServiceImpl implements BenefitsComplianceService 
         BenefitsCompliance existingRecord = repository.findById(id)
                 .orElseThrow(() -> new BenefitsComplianceNotFoundException("Compliance record not found with id: " + id));
 
-        existingRecord.setComplianceType(dto.getComplianceType());
-        existingRecord.setDescription(dto.getDescription());
-        existingRecord.setCreatedDate(dto.getCreatedDate());
-        existingRecord.setStatus(dto.getStatus());
+//        existingRecord.setComplianceType(dto.getComplianceType());
+//        existingRecord.setDescription(dto.getDescription());
+//        existingRecord.setCreatedDate(dto.getCreatedDate());
+//        existingRecord.setStatus(dto.getStatus());
 
         repository.save(existingRecord);
         return convertToDTO(existingRecord);
@@ -58,21 +58,21 @@ public class BenefitsComplianceServiceImpl implements BenefitsComplianceService 
 
     private BenefitsComplianceDTO convertToDTO(BenefitsCompliance compliance) {
         return new BenefitsComplianceDTO(
-                compliance.getId(),
-                compliance.getComplianceType(),
-                compliance.getDescription(),
-                compliance.getCreatedDate(),
-                compliance.getStatus()
+//                compliance.getId(),
+//                compliance.getComplianceType(),
+//                compliance.getDescription(),
+//                compliance.getCreatedDate(),
+//                compliance.getStatus()
         );
     }
 
     private BenefitsCompliance convertToEntity(BenefitsComplianceDTO dto) {
         return new BenefitsCompliance(
-                dto.getId(),
-                dto.getComplianceType(),
-                dto.getDescription(),
-                dto.getCreatedDate(),
-                dto.getStatus()
+//                dto.getId(),
+//                dto.getComplianceType(),
+//                dto.getDescription(),
+//                dto.getCreatedDate(),
+//                dto.getStatus()
         );
     }
 }

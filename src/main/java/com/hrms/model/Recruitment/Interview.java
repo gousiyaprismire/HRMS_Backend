@@ -1,5 +1,6 @@
 package com.hrms.model.Recruitment;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -18,6 +19,7 @@ public class Interview {
     private String jobPosition;
 
     @Column(name = "interview_date", nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") // Ensure the format is ISO 8601
     private LocalDateTime interviewDate;
 
     @Column(name = "interviewer", nullable = false)
@@ -28,7 +30,6 @@ public class Interview {
 
     @Column(name = "status", nullable = false)
     private String status = "Scheduled";
-
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

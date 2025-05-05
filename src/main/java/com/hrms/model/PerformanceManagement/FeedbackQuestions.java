@@ -23,12 +23,11 @@ public class FeedbackQuestions {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String text;
-	public Object getText() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getText() {
+		return text;
 	}
-	public void setText(Object text2) {
-		// TODO Auto-generated method stub
+	public void setText(String text) {
+		this.text = text;
 		
 	}
 

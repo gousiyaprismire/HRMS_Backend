@@ -23,13 +23,13 @@ public class InterviewService {
         return interviewRepository.findAll();
     }
 
-    // ✅ Add this method to fetch an interview by ID
+
     public Interview getInterviewById(Long id) {
         return interviewRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Interview not found"));
     }
 
-    // ✅ Alternative method that returns Optional
+
     public Optional<Interview> getInterviewByIdOptional(Long id) {
         return interviewRepository.findById(id);
     }

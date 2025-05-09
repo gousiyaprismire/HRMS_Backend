@@ -11,6 +11,7 @@ public class Compensation {
     private Long id;
 
     private Long employeeId;
+    private String employeeName;
     private Double ctc;
 
     // Earnings
@@ -39,6 +40,9 @@ public class Compensation {
     public Long getEmployeeId() { return employeeId; }
     public void setEmployeeId(Long employeeId) { this.employeeId = employeeId; }
 
+    public String getEmployeeName() { return employeeName; }
+    public void setEmployeeName(String employeeName) { this.employeeName = employeeName; }
+    
     public Double getCtc() { return ctc; }
     public void setCtc(Double ctc) { this.ctc = ctc; }
 

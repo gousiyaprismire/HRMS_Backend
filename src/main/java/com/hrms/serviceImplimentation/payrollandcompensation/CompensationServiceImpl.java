@@ -58,14 +58,14 @@ public class CompensationServiceImpl implements CompensationService {
 
         double basic = ctc * 0.50;
         double hra = ctc * 0.20;
-        double conveyance = 19200.0;
-        double medical = 15000.0;
-        double employerPf = basic * 0.12;
+        double conveyance = ctc * 0.048;
+        double medical = ctc * 0.045;
+        double employerPf = basic * 0.06;
         double special = ctc - (basic + hra + conveyance + medical + employerPf);
 
-        double employeePf = basic * 0.12;
+        double employeePf = employerPf;
         double professionalTax = 2400.0;
-        double variablePay = ctc * 0.04;
+        double variablePay = 0;	
         double totalDeductions = employeePf + professionalTax + variablePay;
 
         double netTakeHome = ctc - totalDeductions;

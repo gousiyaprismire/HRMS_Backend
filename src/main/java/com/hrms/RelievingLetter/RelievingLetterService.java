@@ -1,7 +1,11 @@
 package com.hrms.RelievingLetter;
 
-import java.io.ByteArrayOutputStream;
+import java.util.List;  // Correct import
+import java.util.Optional;
 
 public interface RelievingLetterService {
-    ByteArrayOutputStream generateRelievingLetterPdf(RelievingLetter letter) throws Exception;
+    RelievingLetter saveLetter(RelievingLetter letter);
+    void sendRelievingLetterEmail(RelievingLetter letter);
+    Optional<RelievingLetter> findById(Long id);
+    List<RelievingLetter> findAll();
 }
